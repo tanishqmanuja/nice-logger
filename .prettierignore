@@ -1,0 +1,10 @@
+# Ignore everything
+/*
+
+# Except
+!src
+!example
+!README.md
+!.prettierrc
+!tsconfig.json
+!build.config.ts
