@@ -1,3 +1,9 @@
-# nice-logger
+# Nice Logger
 
-Super simple logger for Elysia.
+Not the nicest but a pretty nice logger for Elysia.
+
+## Installation
+
+```bash
+bun add @tqman/nice-logger
+```
