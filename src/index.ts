@@ -23,6 +23,9 @@ export interface LoggerOptions {
   mode?: "combined" | "live";
 }
 
+/**
+ * A Nice and Simple logger plugin for Elysia
+ */
 export const logger = (options: LoggerOptions = {}) => {
   const { enabled = process.env.NODE_ENV !== "production", mode = "combined" } =
     options;
