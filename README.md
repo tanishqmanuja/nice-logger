@@ -1,6 +1,6 @@
 ![Logo](https://raw.github.com/tanishqmanuja/static/main/banners/nice-logger.webp?maxAge=2592000)
 
-<p align=center>"Not the nicest but a pretty nice and sweet logger for Elysia."</p>
+<p align=center>"Not the nicest but, a pretty nice and sweet logger for Elysia."</p>
 
 ## 🚀 Installation
 
