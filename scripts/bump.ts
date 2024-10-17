@@ -12,4 +12,4 @@ if (!["patch", "minor", "major"].includes(bump)) {
   process.exit(1);
 }
 
-await $`npm version ${bump} -m "${{ raw: "🔖" }} chore: bump version"`;
+await $`npm version ${bump} -m "chore: bump version"`;
