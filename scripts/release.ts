@@ -21,12 +21,17 @@ if(bump === "major" || bump === "minor" || bump === "patch") {
   console.log(`Bump Type: ${bump}`);
   console.log(`Repo: ${owner}/${repo}`);
 
-  console.log("\nDispatching workflow...\n");
+  console.log("\nDispatching workflow...");
 
   await $`gh api --method POST -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/${owner}/${repo}/actions/workflows/${WORKFLOW_ID}/dispatches -f "ref=main" -f "inputs[bump]=${bump}"`;
+  /repos/${owner}/${repo}/actions/workflows/${WORKFLOW_ID}/dispatches -f "ref=main" -f "inputs[bump]=${bump}"`.quiet().then(() => {
+    console.log("Dispatched!");
+    process.exit(0);
+  }).catch(e => {
+    console.log(e);
+    process.exit(1);
+  })
 
-  process.exit(0);
 } else {
   console.log("Invalid bump type");
   process.exit(1);
