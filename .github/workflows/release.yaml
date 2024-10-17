@@ -50,7 +50,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Bump version
-        run: npm version ${{ github.event.inputs.bump }}
+        run: bun run bump ${{ github.event.inputs.bump }}
 
       - name: Build
         run: bun run build
