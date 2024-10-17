@@ -47,10 +47,10 @@
     "unbuild": "^2.0.0"
   },
   "peerDependencies": {
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.3",
     "elysia": "^1.1.9"
   },
   "dependencies": {
-    "picocolors": "^1.0.1"
+    "picocolors": "^1.1.1"
   }
 }
