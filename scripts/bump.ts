@@ -13,4 +13,3 @@ if (!["patch", "minor", "major"].includes(bump)) {
 }
 
 await $`npm version ${bump} -m "${{ raw: "🔖" }} chore: bump version"`;
-await $`git push`;
