@@ -2,6 +2,24 @@
 
 <p align=center>"Not the nicest, but a pretty nice and sweet logger for Elysia."</p>
 
+<div align=center>
+
+[![Downloads][downloads-shield]][npm-url]
+[![NPM Version][npm-shield]][npm-url]
+![GitHub Workflow Status][ci-status-shield]
+[![License][license-shield]][license-url]
+
+</div>
+
+<!-- Shields -->
+
+[ci-status-shield]: https://img.shields.io/github/actions/workflow/status/tanishqmanuja/nice-logger/release.yaml?branch=main&style=for-the-badge&label=ci
+[downloads-shield]: https://img.shields.io/npm/dm/%40tqman%2Fnice-logger?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/tanishqmanuja/apkmirror-downloader?style=for-the-badge
+[license-url]: https://github.com/tanishqmanuja/nice-logger/blob/main/LICENSE.md
+[npm-shield]: https://img.shields.io/npm/v/@tqman/nice-logger?style=for-the-badge
+[npm-url]: https://www.npmjs.com/package/@tqman/nice-logger
+
 ## 🚀 Installation
 
 ```bash
