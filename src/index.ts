@@ -21,6 +21,18 @@ export interface LoggerOptions {
    * @default 'combined'
    */
   mode?: "combined" | "live";
+  /**
+   * Whether to print timestamp at the beginning of each line
+   *
+   * @default false
+   */
+  withTimestamp?: boolean;
+  /**
+   *  Whether to print banner at the beginning of each line
+   *
+   * @default false
+   */
+  withBanner?: boolean;
 }
 
 /**
@@ -37,7 +49,23 @@ export const logger = (options: LoggerOptions = {}) => {
 
   if (!enabled) return app;
 
+  const getTimestamp = () => {
+    const now = new Date();
+    return now.toLocaleString();
+  };
+
   app
+    .onStart(ctx => {
+      if (!options.withBanner) {
+        return;
+      }
+
+      const ELYSIA_VERSION = import.meta.require("elysia/package.json").version;
+      console.log(`🦊 ${pc.green(`${pc.bold("Elysia")} v${ELYSIA_VERSION}`)}`);
+      console.log(
+        `${pc.green(" ➜ ")} ${pc.bold("Server")}:   ${pc.cyan(String(ctx.server?.url))}\n`,
+      );
+    })
     .onRequest(ctx => {
       ctx.store = {
         ...ctx.store,
@@ -48,6 +76,7 @@ export const logger = (options: LoggerOptions = {}) => {
         const url = new URL(ctx.request.url);
 
         const components = [
+          options.withTimestamp ? pc.dim(`[${getTimestamp()}]`) : "",
           pc.blue("--->"),
           pc.bold(fmt.method(ctx.request.method)),
           url.pathname,
@@ -68,6 +97,7 @@ export const logger = (options: LoggerOptions = {}) => {
 
       const sign = mode === "combined" ? pc.green("✓") : pc.green("<---");
       const components = [
+        options.withTimestamp ? pc.dim(`[${getTimestamp()}]`) : "",
         sign,
         pc.bold(fmt.method(request.method)),
         url.pathname,
@@ -87,6 +117,7 @@ export const logger = (options: LoggerOptions = {}) => {
 
       const sign = mode === "combined" ? pc.red("✗") : pc.red("<-x-");
       const components = [
+        options.withTimestamp ? pc.dim(`[${getTimestamp()}]`) : "",
         sign,
         pc.bold(fmt.method(request.method)),
         url.pathname,

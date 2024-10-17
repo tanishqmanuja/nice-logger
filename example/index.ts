@@ -19,6 +19,8 @@ const app = new Elysia()
   .use(
     logger({
       mode: "live",
+      withBanner: true,
+      withTimestamp: true,
     }),
   )
   .use(child)
