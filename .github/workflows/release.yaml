@@ -59,7 +59,4 @@ jobs:
         run: npm publish --provenance --access public 
 
       - name: Commit
-        run: |
-          git add .
-          git commit -m "chore: bump version"
-          git push
+        run: git push
