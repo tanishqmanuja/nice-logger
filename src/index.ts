@@ -32,7 +32,10 @@ export interface LoggerOptions {
    *
    * @default false
    */
-  withBanner?: boolean;
+  withBanner?:
+    | boolean
+    | (() => void)
+    | Record<string, string | ((ctx: Elysia) => string | undefined)>;
 }
 
 /**
@@ -60,10 +63,30 @@ export const logger = (options: LoggerOptions = {}) => {
         return;
       }
 
+      if (typeof options.withBanner === "function") {
+        options.withBanner();
+        return;
+      }
+
       const ELYSIA_VERSION = import.meta.require("elysia/package.json").version;
       console.log(`🦊 ${pc.green(`${pc.bold("Elysia")} v${ELYSIA_VERSION}`)}`);
+
+      if (typeof options.withBanner === "object") {
+        Object.entries(options.withBanner).forEach(([key, value]) => {
+          const v = typeof value === "function" ? value(ctx) : value;
+
+          if (v) {
+            console.log(`${pc.green(" ➜ ")} ${pc.bold(key)}: ${pc.cyan(v)}`);
+          }
+        });
+
+        // empty line
+        console.log();
+        return;
+      }
+
       console.log(
-        `${pc.green(" ➜ ")} ${pc.bold("Server")}:   ${pc.cyan(String(ctx.server?.url))}\n`,
+        `${pc.green(" ➜ ")} ${pc.bold("Server")}: ${pc.cyan(String(ctx.server?.url))}\n`,
       );
     })
     .onRequest(ctx => {
