@@ -5,6 +5,7 @@ import { version } from "../package.json";
 const WORKFLOW_ID = "release.yaml";
 
 const bump = process.argv[2] ?? "patch";
+const dryRun = process.argv.includes("--dry-run");
 
 if (!bump) {
   console.error("Missing bump");
@@ -20,19 +21,25 @@ const { owner, repo } = await $`git config --get remote.origin.url`
   .quiet()
   .text()
   .then(url => {
-    const [owner, repo] = url.split("/").slice(-2);
+    const [owner, repo] = url
+      .trim()
+      .replace(/^.*github\.com(\:|\/)?/, "")
+      .replace(".git", "")
+      .split("/");
+
     if (!owner || !repo) {
       throw new Error("Cannot find owner or repo");
     }
-    return {
-      owner,
-      repo: repo.replace(".git", "").trim(),
-    };
+    return { owner, repo };
   });
 
 console.log(`Current Version: ${version}`);
 console.log(`Bump Type: ${bump}`);
 console.log(`Repo: ${owner}/${repo}`);
+
+if (dryRun) {
+  process.exit(0);
+}
 
 console.log("\nDispatching workflow...");
 
