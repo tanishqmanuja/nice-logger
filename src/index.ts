@@ -53,15 +53,10 @@ export const logger = (options: LoggerOptions = {}) => {
 
   if (!enabled) return app;
 
-  const defaultGetTimestamp = () => {
-    return new Date().toLocaleString();
-  };
-
-  // use the `withTimestamp` option if it's a function
   const getTimestamp =
     typeof options.withTimestamp === "function"
       ? options.withTimestamp
-      : defaultGetTimestamp;
+      : () => new Date().toLocaleString();
 
   app
     .onStart(ctx => {
