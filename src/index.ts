@@ -23,10 +23,11 @@ export interface LoggerOptions {
   mode?: "combined" | "live";
   /**
    * Whether to print timestamp at the beginning of each line
+   * could be a function that returns a string
    *
    * @default false
    */
-  withTimestamp?: boolean;
+  withTimestamp?: boolean | (() => string);
   /**
    *  Whether to print banner at the beginning of each line
    *
@@ -52,10 +53,15 @@ export const logger = (options: LoggerOptions = {}) => {
 
   if (!enabled) return app;
 
-  const getTimestamp = () => {
-    const now = new Date();
-    return now.toLocaleString();
+  const defaultGetTimestamp = () => {
+    return new Date().toLocaleString();
   };
+
+  // use the `withTimestamp` option if it's a function
+  const getTimestamp =
+    typeof options.withTimestamp === "function"
+      ? options.withTimestamp
+      : defaultGetTimestamp;
 
   app
     .onStart(ctx => {
