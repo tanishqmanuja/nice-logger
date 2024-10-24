@@ -1,9 +1,13 @@
 import pc from "picocolors";
+import type { Formatter } from "picocolors/types";
+
+/* Formatter for DURATION */
 
 const UNITS = ["µs", "ms", "s"];
-const durationFormatter = Intl.NumberFormat(undefined, {
+const DURATION_FORMATTER = Intl.NumberFormat(undefined, {
   maximumFractionDigits: 2,
 });
+
 export function duration(duration: number | null): string {
   if (!duration) {
     return "-/-";
@@ -14,66 +18,56 @@ export function duration(duration: number | null): string {
     unitIndex++;
   }
 
-  return `${durationFormatter.format(duration)}${UNITS[unitIndex]}`;
+  return `${DURATION_FORMATTER.format(duration)}${UNITS[unitIndex]}`;
 }
 
+/* Formatter for METHOD */
+
+const METHOD_COLOR_LUT = {
+  GET: pc.green,
+  POST: pc.blue,
+  PUT: pc.yellow,
+  DELETE: pc.red,
+  PATCH: pc.magenta,
+  OPTIONS: pc.cyan,
+  HEAD: pc.gray,
+};
+
 export function method(method: string): string {
-  switch (method) {
-    case "GET":
-      return pc.green("GET");
+  const colorer = (METHOD_COLOR_LUT as Record<string, Formatter>)[
+    method.toUpperCase()
+  ];
 
-    case "POST":
-      return pc.blue("POST");
-
-    case "PUT":
-      return pc.yellow("PUT");
-
-    case "DELETE":
-      return pc.red("DELETE");
-
-    case "PATCH":
-      return pc.magenta("PATCH");
-
-    case "OPTIONS":
-      return pc.cyan("OPTIONS");
-
-    case "HEAD":
-      return pc.gray("HEAD");
-
-    default:
-      return method;
+  if (colorer) {
+    return colorer(method);
+  } else {
+    return method;
   }
 }
 
-export function status(
-  status: number | string | undefined,
-): string | undefined {
-  switch (status) {
-    case 200:
-      return pc.green(status);
+/* Formatter for STATUS */
 
-    case 201:
-      return pc.blue(status);
+const STATUS_COLOR_LUT = {
+  200: pc.green,
+  201: pc.blue,
+  204: pc.yellow,
+  400: pc.red,
+  401: pc.magenta,
+  403: pc.cyan,
+  404: pc.gray,
+  500: pc.gray,
+};
 
-    case 204:
-      return pc.yellow(status);
+export function status(status: string | number | undefined): string {
+  if (status === undefined) {
+    return "";
+  }
 
-    case 400:
-      return pc.red(status);
+  const colorer = (STATUS_COLOR_LUT as Record<number, Formatter>)[+status];
 
-    case 401:
-      return pc.magenta(status);
-
-    case 403:
-      return pc.cyan(status);
-
-    case 404:
-      return pc.gray(status);
-
-    case 500:
-      return pc.gray(status);
-
-    default:
-      return String(status);
+  if (colorer) {
+    return colorer(status);
+  } else {
+    return status.toString();
   }
 }
