@@ -59,4 +59,9 @@ jobs:
         run: npm publish --provenance --access public 
 
       - name: Commit
-        run: git push
+        run: git push --follow-tags
+
+      - name: Release Notes
+        run: bunx changelogithub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
