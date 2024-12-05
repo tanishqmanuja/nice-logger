@@ -46,7 +46,7 @@ Some projects using `@tqman/nice-logger`
 
 - [**todos-react-elysia**](https://github.com/tanishqmanuja/todos-react-elysia)
 
-  A simple starter fullstack todos app built with React and Elysia.
+  A simple starter fullstack todos app built with [React](https://react.dev) and [Elysia](https://elysiajs.com).
 
 ## 🍀 Show your Support
 
