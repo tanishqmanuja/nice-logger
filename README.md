@@ -40,6 +40,14 @@ const app = new Elysia()
   .listen(3000);
 ```
 
+## 🍰 Showcase
+
+Some projects using `@tqman/nice-logger`
+
+- [**todos-react-elysia**](https://github.com/tanishqmanuja/todos-react-elysia)
+
+  A simple starter fullstack todos app built with React and Elysia.
+
 ## 🍀 Show your Support
 
 Give a ⭐️ if this project helped you!
