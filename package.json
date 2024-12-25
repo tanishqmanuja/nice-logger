@@ -38,18 +38,19 @@
     "format:check": "prettier --check .",
     "build": "unbuild",
     "bump": "bun run scripts/bump.ts",
-    "release": "bun run scripts/release.ts"
-  },
-  "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
-    "@types/bun": "^1.1.11",
-    "elysia": "^1.1.22",
-    "prettier": "^3.3.3",
-    "unbuild": "^2.0.0"
+    "release": "bun run scripts/release.ts",
+    "test": "vitest"
   },
   "peerDependencies": {
-    "typescript": "^5.6.3",
-    "elysia": "^1.1.9"
+    "elysia": ">=1.2.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@types/bun": "^1.1.14",
+    "elysia": "^1.2.6",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "unbuild": "^3.0.1"
   },
   "dependencies": {
     "picocolors": "^1.1.1"
