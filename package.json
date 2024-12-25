@@ -8,16 +8,17 @@
     "email": "tanishqmanuja@gmail.com"
   },
   "type": "module",
-  "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "main": "./dist/index.cjs",
+  "main": "./dist/cjs/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "exports": {
+      "./package.json": "./package.json",
+      ".": {
+          "types": "./dist/index.d.ts",
+          "import": "./dist/index.mjs",
+          "require": "./dist/cjs/index.js"
+      }
+  },
   "files": [
     "dist"
   ],
@@ -36,10 +37,9 @@
     "dev": "bun run --watch example/index.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "build": "unbuild",
+    "build": "bun run scripts/build.ts",
     "bump": "bun run scripts/bump.ts",
-    "release": "bun run scripts/release.ts",
-    "test": "vitest"
+    "release": "bun run scripts/release.ts"
   },
   "peerDependencies": {
     "elysia": ">=1.2.0"
@@ -49,8 +49,8 @@
     "@types/bun": "^1.1.14",
     "elysia": "^1.2.6",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
-    "unbuild": "^3.0.1"
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "picocolors": "^1.1.1"

@@ -69,7 +69,7 @@ export const logger = (options: LoggerOptions = {}) => {
         return;
       }
 
-      const ELYSIA_VERSION = import.meta.require("elysia/package.json").version;
+      const ELYSIA_VERSION = require("elysia/package.json").version;
       console.log(`🦊 ${pc.green(`${pc.bold("Elysia")} v${ELYSIA_VERSION}`)}`);
 
       if (typeof options.withBanner === "object") {
