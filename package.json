@@ -9,13 +9,13 @@
   },
   "type": "module",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/cjs/index.js"
     }
   },
