@@ -1,6 +1,6 @@
 ![Logo](https://raw.github.com/tanishqmanuja/static/main/banners/nice-logger.webp?maxAge=2592000)
 
-<p align=center>"Not the nicest, but a pretty nice and sweet logger for Elysia."</p>
+<p align=center>"Not the nicest, but a pretty nice and sweet logger for <a href="https://elysiajs.com">Elysia</a>."</p>
 
 <div align=center>
 
@@ -35,6 +35,7 @@ import { logger } from "@tqman/nice-logger";
 const app = new Elysia()
   .use(logger({
     mode: "live", // "live" or "combined" (default: "combined")
+    withTimestamp: true, // optional (default: false)
   }));
   .get("/", "Hello via Elysia!")
   .listen(3000);
@@ -42,11 +43,13 @@ const app = new Elysia()
 
 ## 🍰 Showcase
 
-Some projects using `@tqman/nice-logger`
+Some awesome projects to checkout !!!
 
-- [**todos-react-elysia**](https://github.com/tanishqmanuja/todos-react-elysia)
+- [**todos-react-elysia**](https://github.com/tanishqmanuja/todos-react-elysia) - A simple starter fullstack todos app built with [React](https://react.dev) and [Elysia](https://elysiajs.com) that uses `@tqman/nice-logger`.
 
-  A simple starter fullstack todos app built with [React](https://react.dev) and [Elysia](https://elysiajs.com).
+- [**elysia-logger**](https://github.com/bogeychan/elysia-logger) - An [Elysia](https://elysiajs.com) logger plugin to use with [pino](https://github.com/pinojs/pino) library, developed by [@bogeychan](https://github.com/bogeychan).
+
+- [**logixlysia**](https://github.com/PunGrumpy/logixlysia) - Another great logger plugin for [Elysia](https://elysiajs.com) developed by [@PunGrumpy](https://github.com/PunGrumpy).
 
 ## 🍀 Show your Support
 
