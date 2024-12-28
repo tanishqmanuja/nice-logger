@@ -47,7 +47,7 @@
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
     "@types/bun": "^1.1.14",
-    "elysia": "^1.2.6",
+    "elysia": "^1.2.9",
     "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
